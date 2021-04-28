@@ -16,7 +16,7 @@ var DISCORD_BOT_TOKEN string
 
 func init() {
 	// Load .env
-	err := godotenv.Load("../../.env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env")
 	}
