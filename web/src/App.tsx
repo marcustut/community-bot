@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import BulletScreen, { StyledBullet } from 'rc-bullets';
+import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
-const headUrl='https://zerosoul.github.io/rc-bullets/assets/img/heads/girl.jpg';
+const client = new W3CWebSocket('ws://127.0.0.1:8000/ws/messages');
 
 const App: React.FC = () => {
   const [screen, setScreen] = useState<JSX.Element[]>([]);
-  const [bullet, setBullet] = useState<string>('');
 
   useEffect(() => {
     setScreen(new BulletScreen('.screen', { duration: 20 }))
   }, [])
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
-    setBullet(value);
-  };
-
-  const handleSend = () => {
-    if (bullet) {
+  useEffect(() => {
+    client.onopen = () => console.log("Websocket connected");
+    client.onclose = () => console.error("Websocket disconnected");
+    client.onmessage = (message) => {
+      const dataFromServer = JSON.parse(message.data as string);
+      console.log('got reply! ', dataFromServer);
       screen.push(
         <StyledBullet
-          head={headUrl}
-          msg={bullet}
+          head={dataFromServer.avatarURL}
+          msg={dataFromServer.text}
           backgroundColor={'#fff'}
           size='large'
         />
-      );
+      )
     }
-  };
-  
+  })
+
   return (
     <>
-      <div className="screen" style={{ width: '100vw', height: '80vh', background: '#000000' }}></div>
-      <input value={bullet} onChange={handleChange} />
-      <button onClick={handleSend}>发送</button>
+      <div className="screen" style={{ width: '100vw', height: '100vh', background: '#000000' }}></div>
     </>
   );
 }

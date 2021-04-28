@@ -31,8 +31,6 @@ func (*Scene) Setup(u engo.Updater) {
 	world.AddSystem(&common.RenderSystem{})
 	world.AddSystem(&common.AnimationSystem{})
 
-	common.UnicodeCap = 40000
-
 	fnt := &common.Font{
 		URL:  "fonts/NotoSansSC-Regular.ttf",
 		FG:   color.White,
@@ -46,7 +44,7 @@ func (*Scene) Setup(u engo.Updater) {
 	text := Text{BasicEntity: ecs.NewBasic()}
 	text.RenderComponent.Drawable = common.Text{
 		Font: fnt,
-		Text: "我是凯阳",
+		Text: "Hello World",
 	}
 	text.SetShader(common.HUDShader)
 
