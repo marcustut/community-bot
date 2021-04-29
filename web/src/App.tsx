@@ -28,8 +28,8 @@ const App: React.FC = () => {
 
     const colours = [
       'rgb(255, 129, 120)',
-      'rgb(213, 255, 161)',
-      'rgb(182, 255, 179)',
+      // 'rgb(213, 255, 161)',
+      // 'rgb(182, 255, 179)',
       'rgb(179, 255, 242)',
       'rgb(181, 214, 255)',
       'rgb(146, 151, 247)',
@@ -68,7 +68,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="screen" style={{ width: '100vw', height: '100vh', background: '#000000' }}></div>
+      <div className="screen" style={{ width: '100vw', height: '100vh', background: '#00ff00' }}></div>
     </>
   );
 }
