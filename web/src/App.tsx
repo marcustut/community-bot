@@ -68,7 +68,15 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="screen" style={{ width: '100vw', height: '100vh', background: '#00ff00' }}></div>
+
+      <div className="screen-container" style = {{ overflow:'hidden', background: '#00ff00', width: '100vw', height: '100vh', maxHeight : '100vh', maxWidth : '100vw'}}>
+
+      <div className="screen" style={{overflow:'hidden', width: '100%', height: '90%', position:'absolute' , top: '5%'}}></div>
+              
+      </div>
+
+  
+      
     </>
   );
 }
